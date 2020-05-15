@@ -1,10 +1,9 @@
-import React, {useContext} from 'react'
-import {CategoriesContext} from '../context/CategoriesContext'
+import React, { useContext } from 'react'
+import { CategoriesContext } from '../context/CategoriesContext'
 
 const Form = () => {
-
-//Use state of component Context
-  const {categories} = useContext(CategoriesContext)
+  //Use state of component Context
+  const { categories } = useContext(CategoriesContext)
 
   console.log(categories)
 
@@ -24,20 +23,21 @@ const Form = () => {
           />
         </div>
         <div className="col-md-4">
-          <select 
-            className="form-control" 
-            name="category"
-            >
-                <option value="">-- Select Category --</option>
-
+          <select className="form-control" name="category">
+            <option value="">-- Select Category --</option>
+            {categories.map((category) => (
+              <option key={category.strCategory} value={category.strCategory}>
+                {category.strCategory}
+              </option>
+            ))}
           </select>
         </div>
         <div className="col-md-4">
-            <input
-                type="submit"
-                className="btn btn-block btn-primary"
-                value="Search Drink"
-                />
+          <input
+            type="submit"
+            className="btn btn-block btn-primary"
+            value="Search Drink"
+          />
         </div>
       </div>
     </form>
