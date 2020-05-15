@@ -16,14 +16,14 @@ const RecipesProvider = (props) => {
 
   //get Recipes
   useEffect(() => {
-      //conditional: for get recipe leter submit
+    //conditional: for get recipe leter submit
     if (consult) {
       const getRecipes = async () => {
         const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${name}&c=${category}`
 
-        const recipes = await axios.get(url)
+        const recipesResult = await axios.get(url)
         // console.log(recipes.data.drinks)
-        setRecipes(recipes.data.drinks)
+        setRecipes(recipesResult.data.drinks)
       }
       getRecipes()
     }
@@ -32,8 +32,9 @@ const RecipesProvider = (props) => {
   return (
     <RecipesContext.Provider
       value={{
+        recipes,
         setSearchRecipes,
-        setConsult
+        setConsult,
       }}
     >
       {props.children}
