@@ -5,18 +5,23 @@ import RecipesList from './components/RecipesList'
 
 import CategoriesProvider from './context/CategoriesContext'
 import RecipesProvider from './context/RecipesContext'
+import ModalProvider from './context/ModalContext'
 
 function App() {
   return (
     <CategoriesProvider>
       <RecipesProvider>
-        <Header />
-        <div className="container mt-5">
-          <div className="row ">
-            <Form />
-          </div>
-          <RecipesList />
-        </div>
+        <ModalProvider>
+
+            <Header />
+            <div className="container mt-5">
+              <div className="row ">
+                <Form />
+              </div>
+              <RecipesList />
+            </div>
+
+        </ModalProvider>
       </RecipesProvider>
     </CategoriesProvider>
   )
