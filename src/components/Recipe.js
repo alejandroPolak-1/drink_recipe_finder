@@ -18,7 +18,7 @@ function getModalStyle() {
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: 'absolute',
-    width: 600,
+    width: 400,
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
@@ -46,12 +46,27 @@ const Recipe = ({ recipe }) => {
 
   //extrat value to context
   const { inforecipe, setIdRecipe, setRecipe } = useContext(ModalContext)
-//   console.log(inforecipe)
+  //   console.log(inforecipe)
 
   //for to see recipe
   const handleOnClick = () => {
     setIdRecipe(idDrink)
     handleOpen()
+  }
+
+  //displays and formats ingredients, problem API no retrn an array
+  const showIngredient = (inforecipe) => {
+    let ingredients = []
+    for (let i = 1; i < 16; i++) {
+      if (inforecipe[`strIngredient${i}`]) {
+        ingredients.push(
+          <li>
+            {inforecipe[`strIngredient${i}`]}:{inforecipe[`strMeasure${i}`]}
+          </li>,
+        )
+      }
+    }
+    return ingredients
   }
 
   return (
@@ -80,10 +95,15 @@ const Recipe = ({ recipe }) => {
             <div style={modalStyle} className={classes.paper}>
               <h2>{inforecipe.strDrink}</h2>
               <h3 className="mt-4">Instruction</h3>
-              <p> 
-                  {inforecipe.strInstructions}
-              </p>
-              <img className="img-fluid my-4" src={inforecipe.strDrinkThumb} alt={inforecipe.srcDrink} />
+              <p>{inforecipe.strInstructions}</p>
+              <img
+                className="img-fluid my-4"
+                src={inforecipe.strDrinkThumb}
+                alt={inforecipe.srcDrink}
+              />
+
+              <h3>Ingredients and Quantities</h3>
+              <ul>{showIngredient(inforecipe)}</ul>
             </div>
           </Modal>
         </div>
