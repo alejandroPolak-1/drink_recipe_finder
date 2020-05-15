@@ -11,7 +11,7 @@ const Form = () => {
 
   //Use state of component Context
   const { categories } = useContext(CategoriesContext)
-  const {  setSearchRecipes } = useContext(RecipesContext )
+  const {  setSearchRecipes, setConsult } = useContext(RecipesContext )
 
   //get Recipe Data Function to loading the contents
   const handleOnChange = (e) => {
@@ -24,6 +24,7 @@ const Form = () => {
   const handleSubmit = e => {
     e.preventDefault();
     setSearchRecipes(search)
+    setConsult(true)
   }
 
   return (
