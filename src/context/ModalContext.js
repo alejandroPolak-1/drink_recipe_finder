@@ -8,7 +8,7 @@ const ModalProvider = (props) => {
 //State of Provider, save, leder submit
 const [idrecipe, setIdRecipe] = useState(null)
 
-const [recipe, setRecipe] = useState({})
+const [inforecipe, setRecipe] = useState({})
 
 //Once we have a recipe, leter click in card, consult API por id
 useEffect(() =>{
@@ -28,8 +28,9 @@ useEffect(() =>{
     return (
         <ModalContext.Provider
         value ={{
+            inforecipe,
+            setRecipe,
             setIdRecipe
-
         }}
         >
             {props.children}

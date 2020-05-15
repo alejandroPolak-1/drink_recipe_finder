@@ -45,7 +45,8 @@ const Recipe = ({ recipe }) => {
   const { idDrink, strDrink, strDrinkThumb } = recipe
 
   //extrat value to context
-  const { setIdRecipe } = useContext(ModalContext)
+  const { inforecipe, setIdRecipe, setRecipe } = useContext(ModalContext)
+//   console.log(inforecipe)
 
   //for to see recipe
   const handleOnClick = () => {
@@ -68,12 +69,21 @@ const Recipe = ({ recipe }) => {
             See Recipe
           </button>
 
-          <Modal open={open} onClose={()=> {
+          <Modal
+            open={open}
+            onClose={() => {
               setIdRecipe(null)
+              setRecipe({})
               handleClose()
-          }}>
+            }}
+          >
             <div style={modalStyle} className={classes.paper}>
-              <h1>from Modal</h1>
+              <h2>{inforecipe.strDrink}</h2>
+              <h3 className="mt-4">Instruction</h3>
+              <p> 
+                  {inforecipe.strInstructions}
+              </p>
+              <img className="img-fluid my-4" src={inforecipe.strDrinkThumb} alt={inforecipe.srcDrink} />
             </div>
           </Modal>
         </div>
