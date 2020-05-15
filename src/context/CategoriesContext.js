@@ -1,4 +1,5 @@
-import React, {createContext, useState} from 'react';
+import React, {createContext, useState, useEffect} from 'react';
+import axios from 'axios'
 
 //Create the Context
 export const CategoriesContext = createContext()
@@ -7,11 +8,22 @@ export const CategoriesContext = createContext()
 const CategoriesProvider= (props) => {
 
 //create state of Context
-const [example, setExample] = useState("Hello, How are you?")
+const [categories, setCategories] = useState([])
+
+//ejecute the call to api
+useEffect(() => {
+    const getCategories = async() =>{
+        const url= 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list'
+
+        const categories= await axios.get(url)
+        setCategories(categories.data.drinks)
+    }
+    getCategories()
+},[])
 
 return(
     <CategoriesContext.Provider
-    value={{ example }}
+    value={{ categories }}
     >
         {props.children}
     </CategoriesContext.Provider>

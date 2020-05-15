@@ -4,8 +4,9 @@ import {CategoriesContext} from '../context/CategoriesContext'
 const Form = () => {
 
 //Use state of component Context
-  const {example} = useContext(CategoriesContext)
-  console.log(example)
+  const {categories} = useContext(CategoriesContext)
+
+  console.log(categories)
 
   return (
     <form className="col-12">
