@@ -1,6 +1,12 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import {CategoriesContext} from '../context/CategoriesContext'
 
 const Form = () => {
+
+//Use state of component Context
+  const {example} = useContext(CategoriesContext)
+  console.log(example)
+
   return (
     <form className="col-12">
       <fieldset className="text-center">
